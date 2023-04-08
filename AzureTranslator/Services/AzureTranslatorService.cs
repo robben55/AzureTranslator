@@ -29,7 +29,7 @@ namespace AzureTranslator.Services
             };
             var response = await client.SendAsync(request).ConfigureAwait(false);
             string content = await response.Content.ReadAsStringAsync();
-            var translationModel = JsonConvert.DeserializeObject<List<TranslateModelResponse>>(content);
+            var translationModel = JsonConvert.DeserializeObject<List<TranslateModelResponse>>(content)!;
             var translationTexts = translationModel.SelectMany(t => t.Translations.Select(t => t.Text));
             var result = string.Join(", ", translationTexts);
             return result;
