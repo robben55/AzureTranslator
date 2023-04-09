@@ -4,6 +4,8 @@ using Newtonsoft.Json;
 using System.Text;
 using Microsoft.Extensions.DependencyInjection;
 using AzureTranslator.Services;
+using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Http;
 
 namespace AzureTranslator
 {
@@ -34,6 +36,7 @@ namespace AzureTranslator
                 client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", config["translator:key"]);
                 client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Region", config["translator:location"]);
             });
+            collection.RemoveAll<IHttpMessageHandlerBuilderFilter>();
             collection.AddSingleton<AzureTranslatorService>();
         });
     }
