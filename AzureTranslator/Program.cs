@@ -32,7 +32,8 @@ namespace AzureTranslator
             var config = builder.Build();
             collection.AddHttpClient("translator", client =>
             {
-                client.BaseAddress = new Uri("https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=ru&to=en");
+                //client.BaseAddress = new Uri("https://api.cognitive.microsofttranslator.com/translate?api-version=3.0&from=ru&to=en");
+                client.BaseAddress = new Uri("https://api.cognitive.microsofttranslator.com/");
                 client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", config["translator:key"]);
                 client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Region", config["translator:location"]);
             });
