@@ -13,7 +13,6 @@ namespace AzureTranslator.Services
     public class AzureTranslatorService
     {
         private readonly IHttpClientFactory _factory;
-        private readonly string _route = "/translate?api-version=3.0&from=ru&to=en";
         public AzureTranslatorService(IHttpClientFactory factory)
         {
             _factory = factory;
@@ -24,7 +23,7 @@ namespace AzureTranslator.Services
             var client = _factory.CreateClient("translator");
             var body = new object[] { new { Text = text } };
             var requestBody = JsonConvert.SerializeObject(body);
-            var request = new HttpRequestMessage(HttpMethod.Post, client.BaseAddress+_route)
+            var request = new HttpRequestMessage(HttpMethod.Post, client.BaseAddress)
             {
                 Content = new StringContent(requestBody, Encoding.UTF8, "application/json")
             };
